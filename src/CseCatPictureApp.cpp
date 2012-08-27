@@ -1,3 +1,13 @@
+/**
+* @ author: Jimmy Xu
+* App name: CSE CAT PICTUE
+* This is a simple app to show cat pictues 
+*
+*
+*/
+
+
+
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
 
@@ -11,10 +21,15 @@ class CseCatPictureApp : public AppBasic {
 	void mouseDown( MouseEvent event );	
 	void update();
 	void draw();
+
+private : 
+	float brighness_;
 };
 
 void CseCatPictureApp::setup()
 {
+
+	brighness_ = 0.0f;
 }
 
 void CseCatPictureApp::mouseDown( MouseEvent event )
@@ -23,12 +38,19 @@ void CseCatPictureApp::mouseDown( MouseEvent event )
 
 void CseCatPictureApp::update()
 {
+	brighness_ = brighness_ + 1.0f;
+
+	if(brighness_> 1.0f){
+
+		brighness_ = 0.0f;
+	}
+
 }
 
 void CseCatPictureApp::draw()
 {
 	// clear out the window with black
-	gl::clear( Color( 0, 0, 0 ) ); 
+	gl::clear( Color( brighness_, brighness_, brighness_ ) ); 
 }
 
 CINDER_APP_BASIC( CseCatPictureApp, RendererGl )
